@@ -1,0 +1,30 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { languages } from "../data/languages.js";
+---
+
+<SiteLayout
+  title="Cambodia Bible"
+  description="Explore Scripture resources for Brao, Bunong, Cham, Jarai, Khmer, Kuy, Krung, and Tampuan."
+  currentPath="/"
+>
+  <section class="content-section language-section">
+    <div class="section-heading">
+      <p class="eyebrow">Explore languages</p>
+      <h2>Choose a language</h2>
+      <p>Find Scripture resources for the languages and communities of Cambodia.</p>
+    </div>
+
+    <div class="language-grid">
+      {
+        languages.map((language) => (
+          <a class="language-card" href={`/${language.slug}/`}>
+            <img src="/logoimage512.png" alt="" width="72" height="72" />
+            <span>{language.name}</span>
+            <span class="card-arrow" aria-hidden="true">→</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</SiteLayout>

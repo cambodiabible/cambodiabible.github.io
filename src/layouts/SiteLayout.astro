@@ -1,0 +1,66 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Cambodia Bible",
+  description = "Scripture resources for the languages of Cambodia.",
+  currentPath = "",
+} = Astro.props;
+
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about/" },
+  { label: "Fonts", href: "/fonts/" },
+  { label: "Privacy", href: "/privacy/" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f2eb" />
+    <link rel="icon" type="image/png" href="/logoimage512.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Cambodia Bible home">
+        <img src="/logoimage512.png" alt="" width="44" height="44" />
+        <span>Cambodia Bible</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        {
+          navigation.map((item) => (
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    <div class="page-banner" role="img" aria-label="Cambodia Bible landscape banner">
+      <div class="banner-shade"></div>
+      <div class="banner-content">
+        <p class="banner-kicker">Cambodia Bible</p>
+        <h1>{title === "Cambodia Bible" ? "Scripture for every community" : title}</h1>
+      </div>
+    </div>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <a href="/">Cambodia Bible</a>
+      <span>Scripture resources for the languages of Cambodia</span>
+      <a href="/privacy/">Privacy policy</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { languages } from "../data/languages.js";
+
+export function getStaticPaths() {
+  return languages.map((language) => ({
+    params: { language: language.slug },
+    props: { language },
+  }));
+}
+
+const { language } = Astro.props;
+const pageTitle = `${language.name} Scripture`;
+---
+
+<SiteLayout
+  title={pageTitle}
+  description={`Explore Cambodia Bible Scripture resources in ${language.name}.`}
+>
+  <section class="content-section language-detail">
+    <a class="back-link" href="/">← All languages</a>
+    <article class="resource-panel">
+      <img
+        class="resource-icon"
+        src="/logoimage512.png"
+        alt=""
+        width="112"
+        height="112"
+      />
+      <p class="eyebrow">Language resources</p>
+      <h2>{language.name}</h2>
+      <p>
+        Explore Scripture resources in {language.name}. More information and
+        resources for this language will be shared here.
+      </p>
+      {
+        language.slug === "jarai" && (
+          <div class="resource-actions">
+            <a
+              class="button"
+              href="https://play.google.com/store/apps/details?id=app.cambodiabible.jra.jkb"
+              target="_blank"
+              rel="noreferrer"
+            >
+              JKB Jarai Bible on Google Play
+            </a>
+            <a
+              class="text-link"
+              href="https://play.google.com/apps/testing/app.cambodiabible.jra.jkb"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Join the Android app test
+            </a>
+          </div>
+        )
+      }
+    </article>
+  </section>
+</SiteLayout>
