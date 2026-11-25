@@ -49,15 +49,22 @@ const pageTitle = `${language.name} Scripture`;
             <StoreBadge type="site" name="Radio Jarai" label="Radio Jarai on Facebook" href="https://www.facebook.com/radiojarai" logo="/badges/facebook.svg" text="Radio Jarai" color="#0866FF" />
             <StoreBadge type="site" name="Jarai Bible" label="Jarai Bible on Facebook" href="https://www.facebook.com/JaraiBible" logo="/badges/facebook.svg" text="Jarai Bible" color="#0866FF" />
             <StoreBadge type="site" name="Jarai" label="An Jarai on Facebook" href="https://www.facebook.com/profile.php?id=100068847219492" logo="/badges/facebook.svg" text="An Jarai អាន ឆ្រៃ អាន ចារាយ" color="#0866FF" />
+            <StoreBadge type="site" name="Jarai keyboard" label="Jarai keyboard on Keyman" href="https://keyman.com/en/keyboards/sil_jarai" logo="/badges/keyman.png" text="Jarai ចារាយ (SIL) keyboard" color="#c4203a" />
           </div>
           </>
         )
       }
       {
         language.slug === "brao" && (
+          <>
           <div class="resource-actions store-badges">
             <StoreBadge type="youversion" name="the Brao Bible" href="https://www.bible.com/bible/2545/MAT.1.BRB" />
           </div>
+          <hr class="resource-divider" />
+          <div class="resource-actions store-badges">
+            <StoreBadge type="site" name="Brao keyboard" label="Brao keyboard on Keyman" href="https://keyman.com/en/keyboards/sil_brao?bcp47=brb" logo="/badges/keyman.png" text="Brao (SIL) keyboard" color="#c4203a" />
+          </div>
+          </>
         )
       }
       {
@@ -99,6 +106,15 @@ const pageTitle = `${language.name} Scripture`;
             <StoreBadge type="site" name="Tampuan Scripture" href="https://tampuanreader.com/tpu" logo="/badges/icc.png" text="Tampuan Reader" />
           </div>
           </>
+        )
+      }
+      {
+        language.slug === "khmer" && (
+          <div class="resource-actions store-badges">
+            <StoreBadge type="google" name="the Khmer Bible App" href="https://play.google.com/store/apps/details?id=khmerbible.khm.org" appTitle="Khmer Bible App" developer="The Bible Society in Cambodia" />
+            <StoreBadge type="apple" name="the Khmer Bible App" href="https://apps.apple.com/us/app/khmer-bible-app/id1409575588" />
+            <StoreBadge type="youversion" name="the Khmer Bible" href="https://www.bible.com/bible/85/GEN.1.%E1%9E%82%E1%9E%81%E1%9E%94" />
+          </div>
         )
       }
       {
