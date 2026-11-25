@@ -1,0 +1,105 @@
+---
+// src/components/PrivacyPolicy.astro
+// One shared policy. Each app's page passes in its own details (see src/data/apps.ts).
+// Names should match the store listings EXACTLY
+// (Play Console → Settings → Developer account → Account details).
+
+interface Props {
+  appName: string;        // exactly as the store listing title, e.g. "JKB Jarai ព្រះគម្ពីរចារាយ"
+  developerName: string;  // developer name shown on Google Play / App Store
+  androidId?: string;     // e.g. "app.cambodiabible.jra.jkb"
+  iosName?: string;       // App Store name, if different
+}
+
+const { appName, developerName, androidId, iosName } = Astro.props;
+
+const LEGAL_ENTITY = '';                            // legal name of the organization, if any (leave '' if none)
+const CONTACT_EMAIL = 'cambodiabible@gmail.com';    // should match the developer email on the store listing
+const WEBSITE = 'https://cambodiabible.app';
+const LAST_UPDATED = 'November 25, 2026';
+---
+<article class="content-section prose-section privacy-policy">
+  <p class="eyebrow">{developerName}</p>
+  <h2>Privacy Policy for {appName}</h2>
+  <p><em>Last updated: {LAST_UPDATED}</em></p>
+
+  <h3>Who we are</h3>
+  <p>
+    This privacy policy applies to the <strong>{appName}</strong> app
+    {iosName && iosName !== appName && <> (called <strong>{iosName}</strong> on the Apple App Store)</>}.
+    The app is developed and published by <strong>{developerName}</strong>{LEGAL_ENTITY && <>, operated by <strong>{LEGAL_ENTITY}</strong></>}.
+  </p>
+  <ul>
+    <li>App name: {appName}</li>
+    {androidId && <li>Google Play package name: {androidId}</li>}
+    <li>Developer: {developerName}</li>
+    {LEGAL_ENTITY && <li>Legal entity: {LEGAL_ENTITY}</li>}
+    <li>Website: <a href={WEBSITE}>{WEBSITE}</a></li>
+    <li>Contact: <!--email_off--><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><!--/email_off--></li>
+  </ul>
+  <p>
+    {developerName} produces and publishes Scripture apps for minority languages of Cambodia.
+    This policy explains what data {appName} collects, if any, and what we do with it.
+  </p>
+
+  <h3>What access to your device does {appName} need?</h3>
+  <p>
+    {appName} may ask for access to read and write your device's storage, including memory cards
+    such as an SD card. This lets the app download audio recordings of the Scriptures, store them on
+    your device and play them. You can choose whether to grant this permission.
+  </p>
+
+  <h3>What information might we collect?</h3>
+  <p>{appName} may collect the following non-personally identifiable information:</p>
+  <ol>
+    <li>Type of device (for example, Samsung Galaxy A15)</li>
+    <li>Operating system version (for example, Android 14)</li>
+    <li>Approximate city or country where the device connects to the internet (for example, Phnom Penh, Cambodia)</li>
+    <li>Books of the Bible read in the app</li>
+  </ol>
+  <p>
+    If analytics is enabled and the device is connected to the internet, {appName} will from time to
+    time send this usage information to Google Analytics. If the device is not connected to the
+    internet, this data is not sent.
+  </p>
+  <p>
+    {appName} does not collect personally identifiable information (PII), such as your name, email
+    address, phone number or precise location. PII is any information about a person, institution or
+    association that can be used to identify them, directly or indirectly.
+  </p>
+
+  <h3>What do we use this information for?</h3>
+  <p>
+    We use this information mainly to understand how many people use {appName} and where they use it.
+    We may also use it to improve the app and support our users.
+  </p>
+
+  <h3>How do we protect this information?</h3>
+  <p>
+    We take appropriate security measures to protect against unauthorized access to, or unauthorized
+    alteration, disclosure or destruction of, data. These include reviewing how we collect, store and
+    process data, and limiting access to the systems where data is stored.
+  </p>
+
+  <h3>Do we share information with others?</h3>
+  <p>
+    We do not sell, trade or otherwise transfer the data we collect to outside parties. This does not
+    include trusted service providers, such as Google Analytics, who help us operate {appName}, as long
+    as they agree to keep the information confidential.
+  </p>
+
+  <h3>Your consent</h3>
+  <p>By using {appName}, you consent to this privacy policy.</p>
+
+  <h3>Changes to this policy</h3>
+  <p>
+    If we change this privacy policy, we will post the changes on this page and update the
+    "Last updated" date above.
+  </p>
+
+  <h3>Contact us</h3>
+  <p>
+    If you have questions about this privacy policy or {appName}, contact {developerName} at
+    <!--email_off--><a href={`mailto:${CONTACT_EMAIL}`}> {CONTACT_EMAIL}</a><!--/email_off-->.
+  </p>
+</article>

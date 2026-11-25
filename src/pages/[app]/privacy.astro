@@ -1,0 +1,28 @@
+---
+// src/pages/[app]/privacy.astro  →  /jkb/privacy/, …
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PrivacyPolicy from '../../components/PrivacyPolicy.astro';
+import { apps, DEFAULT_DEVELOPER } from '../../data/apps';
+
+export function getStaticPaths() {
+  return apps.map((app) => ({
+    params: { app: app.slug },
+    props: { app },
+  }));
+}
+
+const { app } = Astro.props;
+const developerName = app.developer ?? DEFAULT_DEVELOPER;
+---
+<SiteLayout
+  title={`Privacy policy – ${app.name}`}
+  description={`Privacy policy for the ${app.name} app by ${developerName}.`}
+  currentPath={`/${app.slug}/privacy/`}
+>
+  <PrivacyPolicy
+    appName={app.name}
+    developerName={developerName}
+    androidId={app.androidId}
+    iosName={app.iosName}
+  />
+</SiteLayout>
