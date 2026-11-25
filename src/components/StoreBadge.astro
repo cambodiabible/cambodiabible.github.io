@@ -1,0 +1,113 @@
+---
+// src/components/StoreBadge.astro
+// One badge linking to where an app or Scripture can be found.
+// Usage:
+//   <StoreBadge type="google"     href="https://play.google.com/…" name="JKB Jarai Bible" />
+//   <StoreBadge type="apple"      href="https://apps.apple.com/…"  name="JKB Jarai Bible" />
+//   <StoreBadge type="online"     href="https://jarai.ipsapps.org" name="JKB Jarai Bible" />
+//   <StoreBadge type="youversion" href="https://www.bible.com/…"   name="the Brao Bible" />
+//   <StoreBadge type="bibleis"    href="https://live.bible.is/…"   name="the Kuy Bible" />
+//   <StoreBadge type="site"       href="https://tampuanreader.com/tpu" name="Tampuan Scripture"
+//     logo="/badges/icc.png" text="Tampuan Reader" />   (any organization's logo + text;
+//     add color="#d9564a" to change the border/text colour)
+// Put badges inside <div class="resource-actions store-badges"> … </div>.
+// `name` is only used for screen-reader text, e.g. "Read JKB Jarai Bible online".
+// Optional `appTitle` and `developer` show as a caption under the badge — use
+// the app name and developer exactly as they appear on the store listing:
+//   <StoreBadge type="google" href="…" name="JKB Jarai Bible"
+//     appTitle="JKB Jarai ព្រះគម្ពីរ​ចារាយ" developer="Cambodia Bible" />
+
+interface Props {
+  type: 'google' | 'apple' | 'online' | 'youversion' | 'bibleis' | 'site';
+  href: string;
+  name: string;
+  appTitle?: string;   // caption line 1: app name from the store listing
+  developer?: string;  // caption line 2: developer name from the store listing
+  logo?: string;       // type="site" only: path to the logo image, e.g. "/badges/icc.png"
+  text?: string;       // type="site" only: words on the button, e.g. "Tampuan Reader"
+  label?: string;      // optional: replaces the automatic screen-reader text
+  color?: string;      // type="site" only: border/text colour, e.g. "#d9564a" (default ICC green)
+}
+
+const { type, href, name, appTitle, developer, logo, text, color, label: customLabel } = Astro.props;
+
+const labels = {
+  google: `Get ${name} on Google Play`,
+  apple: `Download ${name} on the App Store`,
+  online: `Read ${name} online`,
+  youversion: `Read ${name} on YouVersion`,
+  bibleis: `Listen to ${name} on Bible.is`,
+  site: `Read ${name} on ${text}`,
+};
+const label = customLabel ?? labels[type];
+---
+
+<div class="store-badge-item">
+  {type === 'google' && (
+    <a class="store-badge store-badge--google" href={href} target="_blank" rel="noreferrer">
+      <img src="/badges/google-play.png" alt={label} width="207" height="80" />
+    </a>
+  )}
+
+  {type === 'apple' && (
+    <a class="store-badge store-badge--apple" href={href} target="_blank" rel="noreferrer">
+      <img src="/badges/app-store.svg" alt={label} width="162" height="54" />
+    </a>
+  )}
+
+  {type === 'online' && (
+    <a class="store-badge store-badge--web" href={href} target="_blank" rel="noreferrer" aria-label={label}>
+      <svg
+        class="store-badge__icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+      >
+        <circle cx="12" cy="12" r="9.5" />
+        <path d="M2.5 12h19" />
+        <path d="M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z" />
+      </svg>
+      <span class="store-badge__text">
+        <span class="store-badge__small">Read it</span>
+        <span class="store-badge__large">Online</span>
+      </span>
+    </a>
+  )}
+
+  {type === 'youversion' && (
+    <a class="store-badge store-badge--web" href={href} target="_blank" rel="noreferrer" aria-label={label}>
+      <img class="store-badge__logo" src="/badges/youversion.png" alt="" width="34" height="34" />
+      <span class="store-badge__text">
+        <span class="store-badge__small">Read it on</span>
+        <span class="store-badge__large">YouVersion</span>
+      </span>
+    </a>
+  )}
+
+  {type === 'bibleis' && (
+    <a class="store-badge store-badge--web" href={href} target="_blank" rel="noreferrer" aria-label={label}>
+      <img class="store-badge__logo" src="/badges/bibleis.png" alt="" width="34" height="34" />
+      <span class="store-badge__text">
+        <span class="store-badge__small">Listen on</span>
+        <span class="store-badge__large">Bible.is</span>
+      </span>
+    </a>
+  )}
+
+  {type === 'site' && (
+    <a class="store-badge store-badge--site" href={href} target="_blank" rel="noreferrer" aria-label={label} style={color ? `--site-color: ${color}` : undefined}>
+      {logo && <img class="store-badge__site-logo" src={logo} alt="" width="40" height="40" />}
+      <span class="store-badge__site-text">{text}</span>
+    </a>
+  )}
+
+  {(appTitle || developer) && (
+    <p class="store-badge__caption">
+      {appTitle && <span class="store-badge__app">{appTitle}</span>}
+      {developer && <span class="store-badge__developer">{developer}</span>}
+    </p>
+  )}
+</div>

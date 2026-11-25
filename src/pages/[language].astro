@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import StoreBadge from "../components/StoreBadge.astro";
 import { languages } from "../data/languages.js";
 
 export function getStaticPaths() {
@@ -30,96 +31,31 @@ const pageTitle = `${language.name} Scripture`;
       <p class="eyebrow">Language resources</p>
       <h2>{language.name}</h2>
       <p>
-        Explore Scripture resources in {language.name}. More information and
-        resources for this language will be shared here.
+        Explore Scripture resources in {language.name}. 
       </p>
       {
         language.slug === "jarai" && (
+          <>
           <div class="resource-actions store-badges">
-            <a
-              class="store-badge store-badge--google"
-              href="https://play.google.com/store/apps/details?id=app.cambodiabible.jra.jkb"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src="/badges/google-play.png"
-                alt="Get JKB Jarai Bible on Google Play"
-                width="207"
-                height="80"
-              />
-            </a>
-            <a
-              class="store-badge store-badge--apple"
-              href="https://apps.apple.com/th/app/jkb-jarai-bible/id6503242493"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src="/badges/app-store.svg"
-                alt="Download JKB Jarai Bible on the App Store"
-                width="162"
-                height="54"
-              />
-            </a>
-            <a
-              class="store-badge store-badge--web"
-              href="https://jarai.ipsapps.org"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Read JKB Jarai Bible online"
-            >
-              <svg
-                class="store-badge__icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              >
-                <circle cx="12" cy="12" r="9.5" />
-                <path d="M2.5 12h19" />
-                <path d="M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z" />
-              </svg>
-              <span class="store-badge__text">
-                <span class="store-badge__small">Read it</span>
-                <span class="store-badge__large">Online</span>
-              </span>
-            </a>
-            <a
-              class="store-badge store-badge--web"
-              href="https://www.bible.com/bible/3656/MAT.1.JKB"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Read JKB Jarai Bible on YouVersion"
-            >
-              <img
-                class="store-badge__logo"
-                src="/badges/youversion.png"
-                alt=""
-                width="34"
-                height="34"
-              />
-              <span class="store-badge__text">
-                <span class="store-badge__small">Read it on</span>
-                <span class="store-badge__large">YouVersion</span>
-              </span>
-            </a>
+            <StoreBadge type="google" name="JKB Jarai Bible" href="https://play.google.com/store/apps/details?id=app.cambodiabible.jra.jkb" appTitle="JKB Jarai ព្រះគម្ពីរ​ចារាយ" developer="Cambodia Bible" />
+            <StoreBadge type="apple" name="JKB Jarai Bible" href="https://apps.apple.com/th/app/jkb-jarai-bible/id6503242493" />
+            <StoreBadge type="online" name="JKB Jarai Bible" href="https://jarai.ipsapps.org" />
+            <StoreBadge type="youversion" name="JKB Jarai Bible" href="https://www.bible.com/bible/3656/MAT.1.JKB" />
           </div>
+          <hr class="resource-divider" />
+          <div class="resource-actions store-badges">
+            <StoreBadge type="site" name="Jarai books" href="https://bloomlibrary.org/language:jra-Khmr-KH" logo="/badges/bloom.png" text="Bloom Library" color="#d9564a" />
+            <StoreBadge type="site" name="Radio Jarai" label="Radio Jarai on Facebook" href="https://www.facebook.com/radiojarai" logo="/badges/facebook.svg" text="Radio Jarai" color="#0866FF" />
+            <StoreBadge type="site" name="Jarai Bible" label="Jarai Bible on Facebook" href="https://www.facebook.com/JaraiBible" logo="/badges/facebook.svg" text="Jarai Bible" color="#0866FF" />
+            <StoreBadge type="site" name="Jarai" label="An Jarai on Facebook" href="https://www.facebook.com/profile.php?id=100068847219492" logo="/badges/facebook.svg" text="An Jarai អាន ឆ្រៃ អាន ចារាយ" color="#0866FF" />
+          </div>
+          </>
         )
       }
       {
         language.slug === "brao" && (
-          <div class="resource-actions">
-            <a
-              class="button"
-              href="https://www.bible.com/bible/2545/MAT.1.BRB"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read the Brao Bible on YouVersion
-            </a>
+          <div class="resource-actions store-badges">
+            <StoreBadge type="youversion" name="the Brao Bible" href="https://www.bible.com/bible/2545/MAT.1.BRB" />
           </div>
         )
       }
@@ -139,53 +75,46 @@ const pageTitle = `${language.name} Scripture`;
       }
       {
         language.slug === "cham" && (
-          <div class="resource-actions">
-            <a
-              class="button"
-              href="https://play.google.com/store/apps/details?id=org.fcbh.cjawyi.n1.n"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read Cham Bible on Google Play
-            </a>
-            <a
-              class="text-link"
-              href="https://cham.ipsapps.net/khm"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read Cham Scripture online
-            </a>
+          <div class="resource-actions store-badges">
+            <StoreBadge type="google" name="the Cham Bible" href="https://play.google.com/store/apps/details?id=org.fcbh.cjawyi.n1.n" appTitle="Cham, Western Bible" developer="Faith Comes By Hearing" />
+            <StoreBadge type="online" name="Cham Scripture" href="https://cham.ipsapps.net/khm" />
+            <StoreBadge type="bibleis" name="the Cham Bible" href="https://live.bible.is/bible/CJAWYI/MRK/1?audio_type=audio" />
+            <StoreBadge type="google" name="Cham Kitab Injil Jawi Audio" href="https://play.google.com/store/apps/details?id=org.kalaam.cam.cja.kitab.injil.jawi" appTitle="Cham Kitab Injil Jawi Audio" developer="Kalaam Apps" />
+            <StoreBadge type="google" name="Cham Kitab Injil Kakkhak" href="https://play.google.com/store/apps/details?id=org.kalaam.cham.cja.kitab.khkha.traditional" appTitle="Cham Kitab Injil Kakkhak" developer="Kalaam Apps" />
           </div>
         )
       }
       {
         language.slug === "tampuan" && (
-          <div class="resource-actions">
-            <a
-              class="button"
-              href="https://play.google.com/store/apps/details?id=org.kalaam.cambodia.tampuan.tpu.bible&amp;pcampaignid=web_share"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Tampuan Bible on Google Play
-            </a>
-            <a
-              class="text-link"
-              href="https://www.bible.com/app"
-              target="_blank"
-              rel="noreferrer"
-            >
-              YouVersion Bible app for iPhone and Android
-            </a>
-            <a
-              class="text-link"
-              href="https://tampuan.ipsapps.org/km"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Read Tampuan Scripture online
-            </a>
+          <>
+          <div class="resource-actions store-badges">
+            <StoreBadge type="google" name="the Tampuan Bible" href="https://play.google.com/store/apps/details?id=org.kalaam.cambodia.tampuan.tpu.bible&pcampaignid=web_share" appTitle="Tampuan Bible" developer="Kalaam Apps" />
+            <StoreBadge type="youversion" name="the Tampuan Bible" href="https://www.bible.com/app" />
+            <StoreBadge type="online" name="Tampuan Scripture" href="https://tampuan.ipsapps.org/km" />
+            <StoreBadge type="bibleis" name="the Tampuan Bible" href="https://live.bible.is/bible/TPUWYI/LUK/1?audio_type=audio_drama" />
+          </div>
+          <hr class="resource-divider" />
+          <div class="resource-actions store-badges">
+            <StoreBadge type="site" name="Tampuan Scripture" href="https://tampuanreader.com/tpu" logo="/badges/icc.png" text="Tampuan Reader" />
+          </div>
+          </>
+        )
+      }
+      {
+        language.slug === "kuy" && (
+          <div class="resource-actions store-badges">
+            <StoreBadge type="youversion" name="the Kuy Bible" href="https://www.bible.com/bible/3295/GEN.1.KNT" />
+            <StoreBadge type="bibleis" name="the Kuy Bible" href="https://live.bible.is/bible/KDTWYI/MRK/1?audio_type=audio_drama" />
+          </div>
+        )
+      }
+      {
+        language.slug === "krung" && (
+          <div class="resource-actions store-badges">
+            <StoreBadge type="google" name="the Krung Bible" href="https://play.google.com/store/apps/details?id=org.emuinternational.krr.krungbible" appTitle="Krung Bible (ផាប់ គ្រែដៃ)" developer="EMU International" />
+            <StoreBadge type="apple" name="the Krung Bible" href="https://apps.apple.com/us/app/krung-bible/id1462174340" />
+            <StoreBadge type="online" name="the Krung Bible" href="https://krungbible.app/km" />
+            <StoreBadge type="bibleis" name="the Krung Bible" href="https://live.bible.is/bible/KRRWBT/MAT/1?audio_type=audio" />
           </div>
         )
       }
