@@ -35,22 +35,76 @@ const pageTitle = `${language.name} Scripture`;
       </p>
       {
         language.slug === "jarai" && (
-          <div class="resource-actions">
+          <div class="resource-actions store-badges">
             <a
-              class="button"
+              class="store-badge store-badge--google"
               href="https://play.google.com/store/apps/details?id=app.cambodiabible.jra.jkb"
               target="_blank"
               rel="noreferrer"
             >
-              JKB Jarai Bible on Google Play
+              <img
+                src="/badges/google-play.png"
+                alt="Get JKB Jarai Bible on Google Play"
+                width="207"
+                height="80"
+              />
             </a>
             <a
-              class="text-link"
+              class="store-badge store-badge--apple"
               href="https://apps.apple.com/th/app/jkb-jarai-bible/id6503242493"
               target="_blank"
               rel="noreferrer"
             >
-              JKB Jarai Bible on the iPhone App Store
+              <img
+                src="/badges/app-store.svg"
+                alt="Download JKB Jarai Bible on the App Store"
+                width="162"
+                height="54"
+              />
+            </a>
+            <a
+              class="store-badge store-badge--web"
+              href="https://jarai.ipsapps.org"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Read JKB Jarai Bible online"
+            >
+              <svg
+                class="store-badge__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="9.5" />
+                <path d="M2.5 12h19" />
+                <path d="M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z" />
+              </svg>
+              <span class="store-badge__text">
+                <span class="store-badge__small">Read it</span>
+                <span class="store-badge__large">Online</span>
+              </span>
+            </a>
+            <a
+              class="store-badge store-badge--web"
+              href="https://www.bible.com/bible/3656/MAT.1.JKB"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Read JKB Jarai Bible on YouVersion"
+            >
+              <img
+                class="store-badge__logo"
+                src="/badges/youversion.png"
+                alt=""
+                width="34"
+                height="34"
+              />
+              <span class="store-badge__text">
+                <span class="store-badge__small">Read it on</span>
+                <span class="store-badge__large">YouVersion</span>
+              </span>
             </a>
           </div>
         )
